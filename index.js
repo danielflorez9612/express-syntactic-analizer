@@ -73,7 +73,7 @@ app.post('/', (request, response) => {
         const result = checkPhraseWithWords(request.body.phrase, objects);
         console.log(result);
         // renders index.ejs
-        response.render('index.ejs', {words: objects, result:result})
+        response.render('pages/index.ejs', {words: objects, result:result})
     });
 });
 // POST /words
