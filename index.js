@@ -10,11 +10,11 @@ const tables = {
 const path = require('path');
 const PORT = process.env.PORT || 5000;
 const app = express();
-app.use(express.static(path.join(__dirname, 'public')))
-.use(bodyParser.urlencoded({extended: true}))
-.use(bodyParser.json())
-.set('views', path.join(__dirname, 'views'))
-.set('view engine', 'ejs');
+app .use(express.static(path.join(__dirname, 'public')))
+    .use(bodyParser.urlencoded({extended: true}))
+    .use(bodyParser.json())
+    .set('views', path.join(__dirname, 'views'))
+    .set('view engine', 'ejs');
 // mongodb connection
 MongoClient.connect('mongodb://root:dev96@ds119650.mlab.com:19650/words-dictionary', (err, client) => {
     if (err) return console.log(err);
@@ -64,7 +64,7 @@ function checkPhraseWithWords(phrase, objects) {
 app.get('/', (request, response) => {
     db.collection(tables.words).find().toArray((err, objects) => {
         // renders index.ejs
-        response.render('index.ejs', {words: objects, result:''})
+        response.render('pages/index', {words: objects, result:''})
     });
 });
 app.post('/', (request, response) => {
